@@ -414,6 +414,8 @@ no_accesibles <- accesibilidad %>%
 no_accesibles_puntos <- centroides_dmq %>% 
   right_join(no_accesibles %>% distinct(sec))
 
+prr <- df %>% group_by(parroqu) %>% summarise()
+
 leaflet() |>
   addTiles() |>
   addCircleMarkers(
@@ -425,5 +427,9 @@ leaflet() |>
     data = no_accesibles_puntos,
     radius = 5,
     color = "red"
+  ) %>% 
+  addPolygons(
+    data = prr,
+    color = "purple",
   )
 ```
